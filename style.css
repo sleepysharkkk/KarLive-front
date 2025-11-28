@@ -1,3 +1,6 @@
+body{
+    outline:5px soild lime !important;
+}
 /* reset */
 * {
     margin: 0;
@@ -459,7 +462,206 @@ body {
     color: white;
     z-index: 1000;
 }
+
+
+    .right-panel {
+        right: 6px;
+        gap: 14px;
+    }
 .user-status-box a {
     color: #4fc3f7;
     margin-left: 10px;
+}
+@media(max-width:768px){
+    .right-panel{
+        width: 70px;
+    }
+    .video-player{
+        width:100%;
+        height: auto;
+    }
+    .bottom-nav a {
+        font-size:12 px;
+        padding: 6px;
+    }
+}
+@media (max-width:480px){
+    .right.panel {
+        width:60px;
+    }
+    .bottom-nav{
+        height:50px;
+    }
+    .bottom-nav a{
+        font-size: 10px;
+    }
+}
+
+.video-player{
+    width:100%;
+    height:auto;
+    max-height: 80vh;
+    object-fit: cover;
+}
+.main-content{
+    height:100vh;
+    width:100%;
+    overflow: hidden;
+}
+/* ======= 手機版：右側按鍵調整 ======= */
+@media (max-width: 768px) {
+
+    /* 右側整個按鈕欄位 */
+    .right-panel {
+        position: absolute;
+        right: 10px;
+        top: 25%;
+        transform: translateY(-20%);
+        display: flex;
+        flex-direction: column;
+        gap: 18px; /* 按鈕間距 */
+        z-index: 999;
+    }
+
+    /* 單個按鍵區塊 */
+    .icon-block {
+        width: 70px;
+        height: 70px;
+        border-radius: 16px;
+        font-size: 16px;
+        padding: 8px 0;
+    }
+
+    /* “頭像”按鈕更大 */
+    .avatar-button,
+    .avatar,
+    .avatar img {
+        width: 75px !important;
+        height: 75px !important;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    /* 點讚數值、文字變大 */
+    .icon-block .value {
+        font-size: 18px;
+        margin-top: 4px;
+    }
+
+    .icon-block .label {
+        font-size: 14px;
+    }
+
+    /* 影片縮放（避免左右黑邊） */
+    video,
+    .video-player {
+        width: 100vw;
+        height: 80vh;
+        object-fit: cover;  /* 像抖音一樣填滿 */
+    }
+
+    /* 底部導航列加大 */
+    .bottom-nav {
+        height: 70px;
+        font-size: 15px;
+    }
+
+    .bottom-nav a {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+/* ======= 超小螢幕（iPhone SE）也能適配 ======= */
+@media (max-width: 420px) {
+    .icon-block {
+        width: 62px;
+        height: 62px;
+        font-size: 14px;
+    }
+
+    .icon-block .value {
+        font-size: 16px;
+    }
+
+    .right-panel {
+        right: 6px;
+        gap: 14px;
+    }
+}
+/* ======= 手機版：右側按鍵調整 ======= */
+@media (max-width: 768px) {
+
+    /* 右側整個按鈕欄位 */
+    .right-panel {
+        position: absolute;
+        right: 10px;
+        top: 25%;
+        transform: translateY(-20%);
+        display: flex;
+        flex-direction: column;
+        gap: 18px; /* 按鈕間距 */
+        z-index: 999;
+    }
+
+    /* 單個按鍵區塊 */
+    .icon-block {
+        width: 70px;
+        height: 70px;
+        border-radius: 16px;
+        font-size: 16px;
+        padding: 8px 0;
+    }
+
+    /* “頭像”按鈕更大 */
+    .avatar-button,
+    .avatar,
+    .avatar img {
+        width: 75px !important;
+        height: 75px !important;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    /* 點讚數值、文字變大 */
+    .icon-block .value {
+        font-size: 18px;
+        margin-top: 4px;
+    }
+
+    .icon-block .label {
+        font-size: 14px;
+    }
+
+    /* 影片縮放（避免左右黑邊） */
+    video,
+    .video-player {
+        width: 100vw;
+        height: 80vh;
+        object-fit: cover;  /* 像抖音一樣填滿 */
+    }
+
+    /* 底部導航列加大 */
+    .bottom-nav {
+        height: 70px;
+        font-size: 15px;
+    }
+
+    .bottom-nav a {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+/* ======= 超小螢幕（iPhone SE）也能適配 ======= */
+@media (max-width: 420px) {
+    .icon-block {
+        width: 62px;
+        height: 62px;
+        font-size: 14px;
+    }
+
+    .icon-block .value {
+        font-size: 16px;
+    }
 }
