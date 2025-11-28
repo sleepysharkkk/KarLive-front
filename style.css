@@ -1,667 +1,438 @@
-body{
-    outline:5px soild lime !important;
-}
-/* reset */
-* {
-    margin: 0;
-    padding: 0;
+/* ==========================
+   全站基礎設定
+========================== */
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
+:root {
+    --bg-color: #050713;
+    --card-bg: #111827;
+    --accent: #6366f1;
+    --accent-soft: rgba(99, 102, 241, 0.15);
+    --accent-strong: rgba(129, 140, 248, 0.9);
+    --text-main: #f9fafb;
+    --text-sub: #9ca3af;
+    --border-soft: rgba(148, 163, 184, 0.25);
+    --danger: #ef4444;
+    --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.85);
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+    --nav-height: 72px; /* 基礎底部導航高度，手機會再放大 */
+    --transition-fast: 0.18s ease-out;
+    --transition-normal: 0.25s ease-out;
+}
+
+html,
 body {
-    background: #020617;
-    color: #fff;
-    font-family: system-ui, sans-serif;
-    height: 100vh;
-    overflow: hidden;
-}
-
-/* ========= 右側直排功能列 ========= */
-.right-panel {
-    position: fixed;
-    top: 50%;
-    right: 12px;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-}
-
-.avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #f97316;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 700;
-}
-
-.icon-block {
-    width: 70px;
-    height: 70px;
-    border-radius: 12px;
-    background: #0f172a;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #1e293b;
-}
-
-.icon-block .label {
-    font-size: 12px;
-    color: #9ca3af;
-}
-
-.icon-block .value {
-    font-size: 14px;
-    font-weight: 600;
-    margin-top: 3px;
-}
-
-
-/* ========= 主內容（中間） ========= */
-.main-content {
-    padding: 20px;
-    padding-bottom: 80px; /* 避開底部導航 */
-}
-
-/* ========= 底部導航列 ========= */
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    margin: 0;
+    padding: 0;
     width: 100%;
-    height: 60px;
-    background: #0f172a;
-    border-top: 1px solid #1e293b;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    min-height: 100%;
+    background: radial-gradient(circle at top, #0f172a 0, #020617 55%, #000 100%);
+    color: var(--text-main);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
-.bottom-nav a {
-    color: #e5e7eb;
-    text-decoration: none;
-    font-size: 14px;
-    text-align: center;
+/* 禁止手機瀏覽器自動縮放字體 */
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+/* ==========================
+   版面主架構 (適用創作頁)
+========================== */
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* 主要內容區（上方） */
+main.create-page {
     flex: 1;
-}
-
-.bottom-nav a:hover {
-    color: #f97316;
-}
-/* 底部導航：當前頁面高亮 */
-.bottom-nav a.active {
-    color: #f97316;
-    font-weight: 600;
-}
-
-/* ========= 個人中心頁面 ========= */
-
-.profile-page {
-    min-height: 100vh;
-    padding: 20px 16px 80px; /* 預留底部導航空間 */
-    background: #020617;
-}
-
-.profile-card {
-    max-width: 420px;
+    max-width: 960px;
+    width: 100%;
     margin: 0 auto;
-    background: #020617;
-    border-radius: 20px;
-    border: 1px solid #0b1220;
-    padding: 16px 18px 18px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    padding: 16px 16px calc(var(--nav-height) + 24px);
 }
 
-/* 上面頭像＋名稱 */
-.profile-header {
+/* 頁面標題 */
+.create-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin: 8px 0 18px;
+    text-align: left;
+    color: #e5e7eb;
     display: flex;
     align-items: center;
-    gap: 14px;
-    margin-bottom: 16px;
+    gap: 10px;
 }
 
-.profile-avatar {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: #f97316;
+.create-title::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 22px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #4f46e5, #ec4899);
+}
+
+/* ==========================
+   登入狀態 / 卡片
+========================== */
+
+.auth-box {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.92));
+    border-radius: var(--radius-xl);
+    padding: 18px 16px 16px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-soft);
     display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 狀態文字 */
+.auth-box > div:first-child {
+    font-size: 0.95rem;
+    color: var(--text-sub);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px;
+}
+
+#authStatus {
+    font-weight: 600;
+    color: #f97316;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(248, 113, 113, 0.08);
+    border: 1px solid rgba(248, 113, 113, 0.22);
+}
+
+/* 按鈕群組 */
+.auth-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* 通用按鈕連結 */
+.btn-link {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-}
-
-.profile-name {
-    font-size: 16px;
+    min-width: 0;
+    padding: 10px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.98rem;
     font-weight: 600;
-    margin-bottom: 2px;
+    letter-spacing: 0.03em;
+    text-transform: none;
+    border: 1px solid transparent;
+    background-image: linear-gradient(135deg, #4f46e5, #ec4899);
+    color: #f9fafb;
+    box-shadow: 0 16px 35px rgba(79, 70, 229, 0.45);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast), background var(--transition-fast);
 }
 
-.profile-id {
-    font-size: 12px;
-    color: #9ca3af;
-    margin-bottom: 4px;
+.btn-link:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+    box-shadow: 0 18px 40px rgba(79, 70, 229, 0.52);
 }
 
-.profile-bio {
-    font-size: 12px;
-    color: #e5e7eb;
+.btn-link:active {
+    transform: translateY(0);
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
 }
 
-/* 粉絲 / 關注 / 作品 */
-.profile-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-bottom: 16px;
+/* 若有次要按鈕可以用這個class */
+.btn-secondary {
+    background: rgba(15, 23, 42, 0.9);
+    border-color: var(--border-soft);
+    color: var(--text-main);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.7);
 }
 
-.profile-stat {
-    text-align: center;
-    padding: 8px 4px;
-    border-radius: 12px;
-    border: 1px solid #1f2937;
-    background: #020617;
+.btn-secondary:hover {
+    background: rgba(30, 64, 175, 0.4);
 }
 
-.profile-stat-value {
-    font-size: 16px;
-    font-weight: 600;
+/* ==========================
+   未登入遮罩
+========================== */
+
+#needLoginMask {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.98));
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    display: none; /* JS 控制顯示/隱藏 */
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 16px;
 }
 
-.profile-stat-label {
-    font-size: 11px;
-    color: #9ca3af;
-    margin-top: 2px;
-}
-
-/* 功能列表區 */
-.profile-section-title {
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-.profile-list {
-    border-radius: 12px;
-    border: 1px solid #1f2937;
-    overflow: hidden;
-}
-
-.profile-item {
-    padding: 10px 12px;
+#needLoginMask.active {
     display: flex;
-    flex-direction: column;
-    gap: 2px;
-    background: #020617;
 }
 
-.profile-item + .profile-item {
-    border-top: 1px solid #1f2937;
+.need-login-dialog {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(15, 23, 42, 0.98);
+    border-radius: 24px;
+    padding: 20px 18px 18px;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    box-shadow: 0 22px 50px rgba(15, 23, 42, 0.9);
 }
 
-.profile-item span {
-    font-size: 13px;
-    color: #e5e7eb;
-}
-
-.profile-item small {
-    font-size: 11px;
-    color: #9ca3af;
-}
-/* ========= 創作頁面 ========= */
-
-.create-page {
-    padding: 20px 16px 80px; /* 留底部導航空間 */
-    min-height: 100vh;
-    background: #020617;
-}
-
-.create-title {
-    font-size: 20px;
+/* 遮罩文字、標題 */
+.need-login-title {
+    font-size: 1.15rem;
     font-weight: 700;
-    margin-bottom: 20px;
-}
-
-.create-card-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.create-card {
+    margin-bottom: 6px;
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 14px 16px;
-    border-radius: 16px;
-    border: 1px solid #1f2937;
-    background: #020617;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    cursor: pointer;
-    transition: 0.15s;
+    gap: 8px;
 }
 
-.create-card:hover {
-    background: #0f172a;
+.need-login-title::before {
+    content: "!";
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    background: rgba(248, 113, 113, 0.16);
+    border: 1px solid rgba(248, 113, 113, 0.4);
+    color: #fecaca;
+}
+
+.need-login-text {
+    font-size: 0.93rem;
+    color: var(--text-sub);
+    margin-bottom: 14px;
+}
+
+/* 遮罩按鈕區 */
+.need-login-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+/* 取消 / 關閉按鈕 */
+.btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--border-soft);
+    background: rgba(15, 23, 42, 0.9);
+    font-size: 0.92rem;
+    color: var(--text-sub);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-ghost:hover {
+    background: rgba(30, 64, 175, 0.3);
+    border-color: rgba(129, 140, 248, 0.75);
+    color: #e5e7eb;
     transform: translateY(-1px);
 }
 
-.create-icon {
-    font-size: 28px;
-}
+/* ==========================
+   底部導航列（全站共用）
+========================== */
 
-.create-text span {
-    font-size: 15px;
-    font-weight: 600;
-}
-
-.create-text small {
-    display: block;
-    font-size: 12px;
-    color: #9ca3af;
-    margin-top: 2px;
-}
-/* ========= 訊息頁面 ========= */
-
-.message-page {
-    padding: 20px 16px 80px; /* 預留底部導航空間 */
-    min-height: 100vh;
-    background: #020617;
-}
-
-.message-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 14px;
-}
-
-/* 上方切換 tab */
-.message-tabs {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 14px;
-}
-
-.message-tabs .tab {
-    flex: 1;
-    padding: 6px 0;
-    border-radius: 999px;
-    border: 1px solid #1f2937;
-    background: #020617;
-    color: #e5e7eb;
-    font-size: 13px;
-    cursor: pointer;
-}
-
-.message-tabs .tab.active {
-    background: #f97316;
-    border-color: #f97316;
-    color: #020617;
-    font-weight: 600;
-}
-
-/* 訊息列表 */
-.message-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.message-item {
-    display: flex;
-    gap: 10px;
-    padding: 10px 12px;
-    border-radius: 14px;
-    border: 1px solid #1f2937;
-    background: #020617;
-}
-
-.message-item.unread {
-    border-color: #f97316;
-}
-
-.message-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #0f172a;
+.bottom-nav {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    height: var(--nav-height);
+    background: radial-gradient(circle at top, rgba(30, 64, 175, 0.26), rgba(15, 23, 42, 0.98));
+    border-top: 1px solid rgba(148, 163, 184, 0.3);
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 600;
+    justify-content: space-around;
+    padding: 4px 10px 10px;
+    z-index: 1500;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 }
 
-.message-main {
-    flex: 1;
-}
-
-.message-row {
+.bottom-nav-inner {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2px;
+    gap: 4px;
 }
 
-.message-name {
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.message-time {
-    font-size: 11px;
-    color: #9ca3af;
-}
-
-.message-preview {
-    font-size: 12px;
-    color: #d1d5db;
-}
-/* ========== 已上傳影片列表 ========== */
-
-.video-list {
-    margin-top: 10px;
+/* 每一個icon項目 */
+.nav-item {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-}
-
-.video-card {
-    padding: 10px;
-    border-radius: 14px;
-    border: 1px solid #1f2937;
-    background: #020617;
-    display: flex;
     align-items: center;
-    gap: 12px;
-}
-
-.video-player {
-    width: 220px;
-    border-radius: 10px;
-}
-
-.video-like {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-}
-.main-video-container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: flex-start;  /* 或 center，看你喜歡 */
-}
-
-.main-video-player {
-    width: 120vw;          /* 佔螢幕 60% 寬 */
-    max-width: 1500px;     /* 上限寬度 */
-    border-radius: 16px;
-    outline: none;
-    border: 1px solid #1f2937;
-    background: #000;
-}
-.main-video-container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;  /* ⭐ 水平置中 */
-    width: 100%;
+    gap: 3px;
+    padding: 6px 0;
+    min-width: 0;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--text-sub);
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+    -webkit-tap-highlight-color: transparent;
 }
 
-.main-video-player {
-    width: 120vw;
-    max-width: 1500px;
-    border-radius: 16px;
-}
-.main-video-player {
-    height: 80vh;         /* 占螢幕 80% 高 */
-    object-fit: cover;    /* 影片裁切填滿 */
-}
-.top-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 48px;
-  padding: 0 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #020617;
-  border-bottom: 1px solid #1f2937;
-  z-index: 50;
+/* 點擊區域不要太小（for 手機） */
+.nav-item:active {
+    transform: translateY(1px) scale(0.98);
 }
 
-.top-bar + main {
-  margin-top: 48px; /* 避免被 header 擋住 */
+/* 圖示（如果你用 <span class="nav-icon">） */
+.nav-icon {
+    font-size: 1.25rem;
+    line-height: 1;
 }
 
-.login-button {
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid #f97316;
-  color: #f97316;
-  text-decoration: none;
-  font-size: 14px;
-}
-.user-status-box {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background: rgba(255,255,255,0.1);
-    padding: 10px 15px;
-    border-radius: 8px;
-    backdrop-filter: blur(5px);
-    color: white;
-    z-index: 1000;
+/* 選中的頁面 */
+.nav-item.active {
+    color: #e5e7eb;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(236, 72, 153, 0.2));
+    box-shadow: 0 10px 30px rgba(79, 70, 229, 0.45);
 }
 
+/* ==========================
+   RWD 響應式調整
+========================== */
 
-    .right-panel {
-        right: 6px;
-        gap: 14px;
-    }
-.user-status-box a {
-    color: #4fc3f7;
-    margin-left: 10px;
-}
-@media(max-width:768px){
-    .right-panel{
-        width: 70px;
-    }
-    .video-player{
-        width:100%;
-        height: auto;
-    }
-    .bottom-nav a {
-        font-size:12 px;
-        padding: 6px;
-    }
-}
-@media (max-width:480px){
-    .right.panel {
-        width:60px;
-    }
-    .bottom-nav{
-        height:50px;
-    }
-    .bottom-nav a{
-        font-size: 10px;
-    }
-}
+/* 小螢幕（手機） */
+@media (max-width: 600px) {
 
-.video-player{
-    width:100%;
-    height:auto;
-    max-height: 80vh;
-    object-fit: cover;
-}
-.main-content{
-    height:100vh;
-    width:100%;
-    overflow: hidden;
-}
-/* ======= 手機版：右側按鍵調整 ======= */
-@media (max-width: 768px) {
-
-    /* 右側整個按鈕欄位 */
-    .right-panel {
-        position: absolute;
-        right: 10px;
-        top: 25%;
-        transform: translateY(-20%);
-        display: flex;
-        flex-direction: column;
-        gap: 18px; /* 按鈕間距 */
-        z-index: 999;
+    main.create-page {
+        padding-inline: 14px;
+        padding-bottom: calc(var(--nav-height) + 20px);
     }
 
-    /* 單個按鍵區塊 */
-    .icon-block {
-        width: 70px;
-        height: 70px;
-        border-radius: 16px;
-        font-size: 16px;
-        padding: 8px 0;
-    }
-
-    /* “頭像”按鈕更大 */
-    .avatar-button,
-    .avatar,
-    .avatar img {
-        width: 75px !important;
-        height: 75px !important;
-        border-radius: 50%;
-        margin-bottom: 10px;
-    }
-
-    /* 點讚數值、文字變大 */
-    .icon-block .value {
-        font-size: 18px;
+    .create-title {
+        font-size: 1.4rem;
         margin-top: 4px;
+        margin-bottom: 14px;
     }
 
-    .icon-block .label {
-        font-size: 14px;
+    .auth-box {
+        padding: 14px 12px 12px;
+        border-radius: 18px;
     }
 
-    /* 影片縮放（避免左右黑邊） */
-    video,
-    .video-player {
-        width: 100vw;
-        height: 80vh;
-        object-fit: cover;  /* 像抖音一樣填滿 */
+    .auth-box > div:first-child {
+        font-size: 0.9rem;
     }
 
-    /* 底部導航列加大 */
-    .bottom-nav {
-        height: 70px;
-        font-size: 15px;
+    #authStatus {
+        font-size: 0.86rem;
+        padding: 2px 7px;
     }
 
-    .bottom-nav a {
-        padding: 10px;
-        font-size: 14px;
-    }
-}
-
-/* ======= 超小螢幕（iPhone SE）也能適配 ======= */
-@media (max-width: 420px) {
-    .icon-block {
-        width: 62px;
-        height: 62px;
-        font-size: 14px;
+    .btn-link {
+        width: 100%;
+        padding-block: 11px;
+        font-size: 1rem;        /* 手機字體 & 按鈕放大 */
     }
 
-    .icon-block .value {
-        font-size: 16px;
+    .btn-secondary,
+    .btn-ghost {
+        flex: 1 1 48%;
+        padding-block: 9px;
+        font-size: 0.95rem;
     }
 
-    .right-panel {
-        right: 6px;
-        gap: 14px;
-    }
-}
-/* ======= 手機版：右側按鍵調整 ======= */
-@media (max-width: 768px) {
-
-    /* 右側整個按鈕欄位 */
-    .right-panel {
-        position: absolute;
-        right: 10px;
-        top: 25%;
-        transform: translateY(-20%);
-        display: flex;
-        flex-direction: column;
-        gap: 18px; /* 按鈕間距 */
-        z-index: 999;
+    /* 底部導航變高一點，增加可點擊區域 */
+    :root {
+        --nav-height: 82px;
     }
 
-    /* 單個按鍵區塊 */
-    .icon-block {
-        width: 70px;
-        height: 70px;
-        border-radius: 16px;
-        font-size: 16px;
-        padding: 8px 0;
+    .nav-item {
+        padding-block: 8px;
+        font-size: 0.78rem;
     }
 
-    /* “頭像”按鈕更大 */
-    .avatar-button,
-    .avatar,
-    .avatar img {
-        width: 75px !important;
-        height: 75px !important;
-        border-radius: 50%;
-        margin-bottom: 10px;
+    .nav-icon {
+        font-size: 1.35rem;
     }
 
-    /* 點讚數值、文字變大 */
-    .icon-block .value {
-        font-size: 18px;
-        margin-top: 4px;
+    .need-login-dialog {
+        padding: 18px 14px 14px;
+        border-radius: 18px;
     }
 
-    .icon-block .label {
-        font-size: 14px;
+    .need-login-title {
+        font-size: 1.05rem;
     }
 
-    /* 影片縮放（避免左右黑邊） */
-    video,
-    .video-player {
-        width: 100vw;
-        height: 80vh;
-        object-fit: cover;  /* 像抖音一樣填滿 */
-    }
-
-    /* 底部導航列加大 */
-    .bottom-nav {
-        height: 70px;
-        font-size: 15px;
-    }
-
-    .bottom-nav a {
-        padding: 10px;
-        font-size: 14px;
+    .need-login-text {
+        font-size: 0.9rem;
     }
 }
 
-/* ======= 超小螢幕（iPhone SE）也能適配 ======= */
-@media (max-width: 420px) {
-    .icon-block {
-        width: 62px;
-        height: 62px;
-        font-size: 14px;
+/* 平板 / 中型螢幕 */
+@media (min-width: 601px) and (max-width: 1024px) {
+
+    main.create-page {
+        padding-inline: 24px;
     }
 
-    .icon-block .value {
-        font-size: 16px;
+    .create-title {
+        font-size: 1.6rem;
+    }
+
+    .btn-link {
+        padding-inline: 18px;
+        font-size: 1rem;
+    }
+}
+
+/* 大螢幕（桌機） */
+@media (min-width: 1025px) {
+
+    main.create-page {
+        padding-top: 24px;
+        padding-inline: 24px;
+    }
+
+    .create-title {
+        font-size: 1.9rem;
+    }
+
+    .auth-box {
+        padding: 20px 18px 18px;
+    }
+
+    .btn-link {
+        padding-inline: 20px;
     }
 }
