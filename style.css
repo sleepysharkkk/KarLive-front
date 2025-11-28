@@ -436,3 +436,45 @@ main.create-page {
         padding-inline: 20px;
     }
 }
+/* 手機版專用：把整體字體、按鈕、底部導航都放大 */
+@media (max-width: 600px) {
+
+    html, body {
+        font-size: 18px;              /* 全站基礎字體放大 */
+    }
+
+    h1 {
+        font-size: 1.9rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    /* 所有主要按鈕 */
+    a,
+    button,
+    .btn,
+    .btn-link {
+        font-size: 1rem;
+        padding: 12px 18px;
+        min-height: 44px;             /* 手指好按 */
+    }
+
+    /* 底部導航變高、文字變大 */
+    .bottom-nav {
+        height: 80px;
+    }
+
+    .bottom-nav a,
+    .nav-item {
+        font-size: 0.85rem;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .nav-icon {
+        font-size: 1.4rem;
+    }
+}
+
