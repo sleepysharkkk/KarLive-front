@@ -478,3 +478,99 @@ main.create-page {
     }
 }
 
+/* ===========================================
+   影片區 + 右側操作列（頭像 / 點讚 / 收藏 / 關注）
+   =========================================== */
+
+/* 包住 video 跟右側按鈕的外層容器 */
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 480px;        /* 視情況調整，或拿掉這行讓它全寬 */
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* 影片本身等比例縮放，塞滿寬度 */
+.video-container video {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #000;
+}
+
+/* 右側那一整排（跟抖音一樣靠右垂直排列） */
+.right-panel {
+    position: absolute;
+    right: 10px;
+    bottom: 110px;           /* 避開底部導航 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    z-index: 100;
+}
+
+/* 每一個按鈕（包含頭像、愛心、收藏、評論、關注） */
+.right-panel-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #f9fafb;
+    font-size: 13px;
+}
+
+/* 圓形圖示區：可以放頭像 img 或 icon */
+.right-panel-item .icon-circle,
+.right-panel-item img {
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.8);
+    border: 2px solid rgba(249, 250, 251, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* 如果是頭像圖片 */
+.right-panel-item img {
+    object-fit: cover;
+}
+
+/* 下面的小數字（讚數、收藏數…） */
+.right-panel-item .count {
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+/* 手機版微調：整個右側縮小一點，往上移，避免被底部導航擋到 */
+@media (max-width: 600px) {
+
+    .video-container {
+        max-width: 100%;
+    }
+
+    .right-panel {
+        right: 8px;
+        bottom: 90px;
+        gap: 14px;
+    }
+
+    .right-panel-item .icon-circle,
+    .right-panel-item img {
+        width: 40px;
+        height: 40px;
+        border-width: 1.5px;
+    }
+
+    .right-panel-item {
+        font-size: 12px;
+    }
+
+    .right-panel-item .count {
+        font-size: 11px;
+    }
+}
+
