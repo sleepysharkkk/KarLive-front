@@ -665,3 +665,167 @@ body {
         font-size: 16px;
     }
 }
+/* ===========================================
+   首頁專用佈局：上方狀態列 + 大影片 + 右側操作列
+=========================================== */
+
+/* 使用者狀態列（右上角那條） */
+.user-status-box {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 1000;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.6);
+    color: #e5e7eb;
+    font-size: 0.85rem;
+}
+
+.user-status-box a,
+.user-status-box button {
+    margin-left: 6px;
+    font-size: 0.85rem;
+}
+
+/* 主內容：中間那塊大影片 */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 70px 24px calc(var(--nav-height) + 32px);
+}
+
+/* 大影片外框（灰色圓角區域） */
+.main-video-container {
+    background: #020617;
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.85);
+}
+
+/* 影片本體 */
+.main-video-player {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 18px;
+    background: #111827;
+}
+
+/* 左上角 "|||" */
+.main-content h1 {
+    margin: 0 0 16px;
+    font-size: 1.4rem;
+}
+.main-content h1 a {
+    text-decoration: none;
+    color: #a855f7;
+}
+
+/* 右側直排功能列：頭像 / 點讚 / 收藏 / 評論 / 關注作者 */
+.right-panel {
+    position: fixed;              /* 固定在畫面右側 */
+    top: 50%;
+    right: 24px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    z-index: 900;
+}
+
+/* 頭像圓圈 */
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #f97316;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+/* 下方每一個按鈕塊：點讚 / 收藏 / 評論 / 關注作者 */
+.icon-block {
+    width: 80px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: #020617;
+    color: #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+.icon-block .label {
+    margin-bottom: 2px;
+}
+
+.icon-block .value {
+    font-weight: 600;
+}
+
+/* 底部導航：高亮目前頁籤 */
+.bottom-nav a {
+    flex: 1;
+    text-align: center;
+    color: #4b5563;
+    text-decoration: none;
+    padding: 8px 0;
+    font-size: 0.9rem;
+}
+.bottom-nav a.active {
+    color: #f97316;
+}
+
+/* ------- 手機版調整 ------- */
+@media (max-width: 900px) {
+
+    .main-content {
+        padding: 60px 14px calc(var(--nav-height) + 24px);
+    }
+
+    .main-video-container {
+        padding: 12px;
+        border-radius: 18px;
+    }
+
+    .main-video-player {
+        border-radius: 12px;
+    }
+
+    /* 右側功能列改成靠近右下角，避免擋住影片中央 */
+    .right-panel {
+        top: auto;
+        bottom: calc(var(--nav-height) + 20px);
+        right: 10px;
+        transform: none;
+        gap: 10px;
+    }
+
+    .avatar {
+        width: 48px;
+        height: 48px;
+        font-size: 0.85rem;
+    }
+
+    .icon-block {
+        width: 70px;
+        padding: 6px 8px;
+        font-size: 0.75rem;
+    }
+
+    .user-status-box {
+        left: 12px;
+        right: auto;
+        font-size: 0.8rem;
+    }
+}
+
