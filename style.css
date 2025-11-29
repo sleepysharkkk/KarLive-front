@@ -512,65 +512,80 @@ body {
 @media (max-width: 768px) {
 
     /* 右側整個按鈕欄位 */
+    /* 右側直排功能列：頭像 / 點讚 / 收藏 / 評論 / 關注作者 */
+/* 預設：貼在影片右邊、跟影片垂直置中 */
+.right-panel {
+    position: absolute;          /* 注意：改成相對於 .main-video-container */
+    top: 50%;
+    right: -90px;                /* 往外推一點，電腦版貼在影片右邊 */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    z-index: 20;
+}
+
+/* 頭像圓圈 */
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #f97316;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+/* 下方每一個按鈕塊：點讚 / 收藏 / 評論 / 關注作者 */
+.icon-block {
+    width: 80px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: #020617;
+    color: #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+.icon-block .label {
+    margin-bottom: 2px;
+}
+
+.icon-block .value {
+    font-weight: 600;
+}
+
+/* ------- 手機版調整 ------- */
+@media (max-width: 600px) {
+
+    /* 右側功能列：縮小、往內收，不要被切掉 */
     .right-panel {
-        position: absolute;
-        right: 10px;
-        top: 25%;
-        transform: translateY(-20%);
-        display: flex;
-        flex-direction: column;
-        gap: 18px; /* 按鈕間距 */
-        z-index: 999;
+        right: 6px;              /* 貼在螢幕內側 */
+        top: 50%;
+        transform: translateY(-50%);
+        gap: 10px;
     }
 
-    /* 單個按鍵區塊 */
+    .avatar {
+        width: 52px;
+        height: 52px;
+        font-size: 0.9rem;
+    }
+
     .icon-block {
-        width: 70px;
-        height: 70px;
-        border-radius: 16px;
-        font-size: 16px;
-        padding: 8px 0;
-    }
-
-    /* “頭像”按鈕更大 */
-    .avatar-button,
-    .avatar,
-    .avatar img {
-        width: 75px !important;
-        height: 75px !important;
-        border-radius: 50%;
-        margin-bottom: 10px;
-    }
-
-    /* 點讚數值、文字變大 */
-    .icon-block .value {
-        font-size: 18px;
-        margin-top: 4px;
-    }
-
-    .icon-block .label {
-        font-size: 14px;
-    }
-
-    /* 影片縮放（避免左右黑邊） */
-    video,
-    .video-player {
-        width: 100vw;
-        height: 80vh;
-        object-fit: cover;  /* 像抖音一樣填滿 */
-    }
-
-    /* 底部導航列加大 */
-    .bottom-nav {
-        height: 70px;
-        font-size: 15px;
-    }
-
-    .bottom-nav a {
-        padding: 10px;
-        font-size: 14px;
+        width: 68px;
+        padding: 6px 8px;
+        font-size: 0.75rem;
     }
 }
+
 
 /* ======= 超小螢幕（iPhone SE）也能適配 ======= */
 @media (max-width: 420px) {
@@ -828,4 +843,5 @@ body {
         font-size: 0.8rem;
     }
 }
+
 
