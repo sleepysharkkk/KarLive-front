@@ -3,47 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>KarLive - 首頁</title>
-    <link rel="stylesheet" href="style.css?v=2">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="style.css">
+    <meta name ="viewport" content ="width=drvice-width,initial-scale=1.0">
 </head>
 <body>
-    <div class="video-container">
-    <video src="demo.mp4" controls></video>
-
-    <div class="right-panel">
-        <!-- 頭像 -->
-        <div class="right-panel-item">
-            <img src="avatar.jpg" alt="頭像">
-            <span class="count">作者</span>
-        </div>
-
-        <!-- 點讚 -->
-        <div class="right-panel-item">
-            <div class="icon-circle">❤️</div>
-            <span class="count">0</span>
-        </div>
-
-        <!-- 收藏 -->
-        <div class="right-panel-item">
-            <div class="icon-circle">★</div>
-            <span class="count">0</span>
-        </div>
-
-        <!-- 評論 -->
-        <div class="right-panel-item">
-            <div class="icon-circle">💬</div>
-            <span class="count">0</span>
-        </div>
-
-        <!-- 關注作者 -->
-        <div class="right-panel-item">
-            <div class="icon-circle">＋</div>
-            <span class="count">關注</span>
-        </div>
-    </div>
-</div>
-
 
     <!-- ⭐ 使用者狀態列 -->
     <div class="user-status-box">
@@ -318,6 +281,3 @@ const favRef = ref(db, "favorites/" + currentUser.uid + "/" + currentVideoId);
     </script>
 </body>
 </html>
-
-
-
